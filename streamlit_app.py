@@ -14,11 +14,15 @@ def main():
     # SubHeader
     st.subheader('Sub header')
     #Button
-    st.button('Hit me')
+    st.button('Generate Your Meal Plan')
+    #Button2
+    st.button('Clear')
     #TextInput
-    st.text_input('Enter some text')
+    st.text_input('e.g. Pasta')
     #NumberInput
-    st.number_input('Enter a number')
+    st.number_input('e.g. 30')
+    #Selectbox
+    st.selectbox('What is your goal?', [1,2,3])
    
 
 if __name__ == "__main__":
