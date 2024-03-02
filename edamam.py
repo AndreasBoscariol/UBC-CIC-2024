@@ -63,9 +63,8 @@ if __name__ == "__main__":
            
             if nutrition_info:
                 print("\nNutrition Information:")
-                print("- Food:", nutrition_info['ingredients'][0]['parsed'][0]['food'])
-                print("- Calories:", nutrition_info['calories'])
-                print("- Fat:", (nutrition_info['totalNutrients'])['FAT']['quantity'])
-                print("- Protein:", (nutrition_info['totalNutrients'])['PROCNT']['quantity'])
-                print("- Carbs:", (nutrition_info['totalNutrients'])['CHOCDF']['quantity'])
-                
+                food = ("- Food:", nutrition_info['ingredients'][0]['parsed'][0]['food'])
+                calories = ("- Calories:", nutrition_info['calories'])
+                fat = ("- Fat:", (nutrition_info['totalNutrients'])['FAT']['quantity'])
+                protein = ("- Protein:", (nutrition_info['totalNutrients'])['PROCNT']['quantity'])
+                carbs = ("- Carbs:", (nutrition_info['totalNutrients'])['CHOCDF']['quantity'])
