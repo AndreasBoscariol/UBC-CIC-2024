@@ -20,7 +20,7 @@ def get_inference_parameters(model): #return a default set of parameters based o
     elif (bedrock_model_provider == 'ai21'): #AI21
         return { #AI21
             "maxTokens": 512, 
-            "temperature": 0, 
+            "temperature": 0.3, 
             "topP": 0.5, 
             "stopSequences": [], 
             "countPenalty": {"scale": 0 }, 
@@ -78,4 +78,12 @@ def generate_prompt(prompt, Model):
     print(response)
     foodList = list_scrapper(response)
     print(foodList)
+    return foodList
     
+def user_feedback(previous_prompt, user_prompt, Model):
+    newPrompt = f"""You previously gave a meal plan of {previous_prompt} but the user has the following feedback: {user_prompt}. Generate a new meal plan using both pieces of information. Remember the rules are: Only respond with a list of the names of meals, no description, no sides. There should be 3 meals for 7 days (21 total meals each with 1 item per meal), which total to the Calorie Goal of 2000 calories a day. They should exclude any Dietary Restrictions: None. Do not include the day of the week."""
+    response = get_text_response(Model, newPrompt)
+    print(response)
+    foodList = list_scrapper(response)
+    print(foodList)
+    return(foodList)
