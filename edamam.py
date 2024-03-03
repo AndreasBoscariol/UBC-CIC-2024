@@ -1,5 +1,4 @@
 import requests
-from app import updateChart
 
 APP_ID = '38a686ba'
 APP_KEY = 'c9f3fd2bc6d9e8a0e65ae08058907de5'
@@ -27,7 +26,7 @@ def get_nutrition(food_id):
     response = requests.post(url, headers=headers, json=payload, params={'app_id': APP_ID, 'app_key': APP_KEY})
     return response.json() if response.ok else None
 
-def main(food_name):
+def getMacros(food_name):
     search_result = search_food(food_name)
     if search_result and search_result['hints']:
         food_id = search_result['hints'][0]['food']['foodId']
@@ -39,4 +38,5 @@ def main(food_name):
             protein = nutrition_info['totalNutrients'].get('PROCNT', {'quantity': 'N/A'})['quantity']
             carbs = nutrition_info['totalNutrients'].get('CHOCDF', {'quantity': 'N/A'})['quantity']
             total=fat+calories+protein
-            updateChart(fat, protein, carbs, total)
+            macros=[fat, protein, carbs, total]
+            return macros
