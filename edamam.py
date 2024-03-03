@@ -38,5 +38,4 @@ def getMacros(food_name):
             protein = nutrition_info['totalNutrients'].get('PROCNT', {'quantity': 'N/A'})['quantity']
             carbs = nutrition_info['totalNutrients'].get('CHOCDF', {'quantity': 'N/A'})['quantity']
             total=fat+calories+protein
-            macros=[fat, protein, carbs, total]
-            return macros
+            return fat, protein, carbs, total
