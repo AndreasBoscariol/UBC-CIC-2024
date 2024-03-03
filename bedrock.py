@@ -2,17 +2,17 @@ import os
 import json
 import boto3
 
+
 session = boto3.Session(
     profile_name=os.environ.get("BWB_PROFILE_NAME")
 ) #sets the profile name to use for AWS credentials
 
 bedrock = session.client(
     service_name='bedrock-runtime', #creates a Bedrock client
-    region_name=os.environ.get("BWB_REGION_NAME"),
+    region_name="us-west-2",
     endpoint_url=os.environ.get("BWB_ENDPOINT_URL")
 ) 
 
-#the following is a tets code, do not call uppon it
 bedrock_model_id = "ai21.j2-ultra-v1" #set the foundation model
 
 prompt = "What is the largest city in New Hampshire?" #the prompt to send to the model
@@ -36,6 +36,4 @@ response_body = json.loads(response.get('body').read()) # read the response
 response_text = response_body.get("completions")[0].get("data").get("text") #extract the text from the JSON response
 
 print(response_text)
-
-
 
