@@ -37,3 +37,5 @@ response_text = response_body.get("completions")[0].get("data").get("text") #ext
 
 print(response_text)
 
+
+
