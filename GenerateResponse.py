@@ -45,14 +45,37 @@ def get_text_response(model, input_content): #text-to-text client function
     return llm.predict(input_content) #return a response to the prompt
 
 
-
+def list_scrapper(meals_string):
+    # Split the meals string by days
+    meals_by_day = meals_string.strip().split('\n\n')
+    
+    # List to store all food items
+    food_items = []
+    
+    # Iterate over each day's meals
+    for day_meals in meals_by_day:
+        # Split the day's meals into lines
+        day_lines = day_meals.strip().split('\n')
+        
+        # Iterate over each line to extract food items
+        for line in day_lines:
+            # Check if the line contains a food item
+            if ':' in line:
+                # Split the line into meal and food item
+                meal, food_item = map(str.strip, line.split(':', 1))
+                
+                # Add food item to the list
+                food_items.append(food_item.strip('"'))
+    
+    return food_items
     
     
-response = get_text_response("ai21.j2-ultra-v1","Give me a 1 day meal plan")
-print(response)
-
 #Prompt generation
+
+#Model is either ai21.j2-ultra-v1 or anthropic.claude-v2:1
 def generate_prompt(prompt, Model):
     response = get_text_response(Model, prompt)
     print(response)
+    foodList = list_scrapper(response)
+    print(foodList)
     
