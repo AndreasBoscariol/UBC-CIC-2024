@@ -158,8 +158,7 @@ def dailyCharts(foodList):
         st.write(foodList[19])
         chart([getMacros(foodList[19])[0] / getMacros(foodList[19])[4], foodList[19][1] / getMacros(foodList[19])[4], foodList[19][2] / getMacros(foodList[19])[4]])
     
-        st.write(foodList[20])
-        chart([getMacros(foodList[20])[0] / getMacros(foodList[20])[4], foodList[20][1] / getMacros(foodList[20])[4], foodList[20][2] / getMacros(foodList[20])[4]])
+        
 
 def chart(sizes):
     fig, ax = plt.subplots()  # Define fig and ax here
