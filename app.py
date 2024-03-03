@@ -1,6 +1,13 @@
 import streamlit as st
 import matplotlib.pyplot as plt
 from edamam import getMacros
+from GenerateResponse import generate_prompt
+
+st.set_page_config(
+        page_title='Meal Planner',
+        page_icon='🍴️',
+        layout='wide',
+    )
 
 def main():
     # Title of the app
@@ -28,9 +35,12 @@ def main():
         submit_button = st.form_submit_button(label='Generate Your Meal Plan')
         
         if submit_button:
-            generateMealPlan(gender, age, weight, height, activity_levels[activity_level], goal, diet)
-
+            foodList=generateMealPlan(gender, age, weight, height, activity_levels[activity_level], goal, diet)
+            dailyCharts(foodList)
+            
+            
 def generateMealPlan(gender, age, weight, height, PAL, goal, diet):
+    modelUsed = "ai21.j2-ultra-v1"
     # BMR and Daily Caloric Need Calculation
     if gender == 'Male':
         BMR = 10 * weight + 6.25 * height - 5 * age + 5
@@ -44,25 +54,121 @@ def generateMealPlan(gender, age, weight, height, PAL, goal, diet):
     # Display the calculated daily calories
     st.write(f"Your daily caloric need based on the provided information is {daily_calories:.0f} calories.")
 
-    inital_prompt = f"""
-    Only respond with a list of the names of meals, no description, no sides. 
-    There should be 3 meals for 7 days, which total to the Calorie Goal: {daily_calories}
-    they should exclude any Dietary Restrictions: {diet}
+    initial_prompt = f"""
+    "Only respond with a list of the names of meals, no description, no sides. 
+    There should be 3 meals for 7 days (21 total meals each with 1 item per meal), 
+    which total to the Calorie Goal of {daily_calories}  a day. 
+    They should exclude any Dietary Restrictions: {diet}. Do not include the day of the week.
     """
-    macros = getMacros("pasta")
-    updateChart(macros[0],macros[1],macros[2],macros[3])
     
-def updateChart(fat, carbs, protein, total):
-    # Pie chart, where the slices will be ordered and plotted counter-clockwise:
-    labels = 'Fat', 'Protein', 'Carbs'
-    sizes = [fat/total, protein/total, carbs/total]
+    return generate_prompt(initial_prompt, modelUsed)
+    
+    
+def dailyCharts(foodList):
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday","Sunday"])
+   
+    with tab1:
+        st.write(foodList[0])
+        chart([getMacros(foodList[0])[0] / getMacros(foodList[0])[4], foodList[0][1] / getMacros(foodList[0])[4], foodList[0][2] / getMacros(foodList[0])[4]])
+        
+        st.write(foodList[1])
+        chart([getMacros(foodList[1])[0] / getMacros(foodList[1])[4], foodList[1][1] / getMacros(foodList[1])[4], foodList[1][2] / getMacros(foodList[1])[4]])
 
-    fig, ax = plt.subplots()
+        st.write(foodList[2])
+        chart([getMacros(foodList[2])[0] / getMacros(foodList[2])[4], foodList[2][1] / getMacros(foodList[2])[4], foodList[2][2] / getMacros(foodList[2])[4]])
+
+    with tab2:
+        st.write(foodList[3])
+        chart([getMacros(foodList[3])[0] / getMacros(foodList[3])[4], foodList[3][1] / getMacros(foodList[3])[4], foodList[3][2] / getMacros(foodList[3])[4]])
+
+        st.write(foodList[4])
+        chart([getMacros(foodList[4])[0] / getMacros(foodList[4])[4], foodList[4][1] / getMacros(foodList[4])[4], foodList[4][2] / getMacros(foodList[4])[4]])
+
+        st.write(foodList[5])
+        chart([getMacros(foodList[5])[0] / getMacros(foodList[5])[4], foodList[5][1] / getMacros(foodList[5])[4], foodList[5][2] / getMacros(foodList[5])[4]])
+
+    with tab3:
+        st.write(foodList[6])
+        chart([getMacros(foodList[6])[0] / getMacros(foodList[6])[4], 
+               foodList[6][1] / getMacros(foodList[6])[4], 
+               foodList[6][2] / getMacros(foodList[6])[4]])
+    
+        st.write(foodList[7])
+        chart([getMacros(foodList[7])[0] / getMacros(foodList[7])[4], 
+               foodList[7][1] / getMacros(foodList[7])[4], 
+               foodList[7][2] / getMacros(foodList[7])[4]])
+    
+        st.write(foodList[8])
+        chart([getMacros(foodList[8])[0] / getMacros(foodList[8])[4], 
+               foodList[8][1] / getMacros(foodList[8])[4], 
+               foodList[8][2] / getMacros(foodList[8])[4]])
+    
+    with tab4:
+        st.write(foodList[9])
+        chart([getMacros(foodList[9])[0] / getMacros(foodList[9])[4], 
+               foodList[9][1] / getMacros(foodList[9])[4], 
+               foodList[9][2] / getMacros(foodList[9])[4]])
+    
+        st.write(foodList[10])
+        chart([getMacros(foodList[10])[0] / getMacros(foodList[10])[4], 
+               foodList[10][1] / getMacros(foodList[10])[4], 
+               foodList[10][2] / getMacros(foodList[10])[4]])
+    
+        st.write(foodList[11])
+        chart([getMacros(foodList[11])[0] / getMacros(foodList[11])[4], 
+               foodList[11][1] / getMacros(foodList[11])[4], 
+               foodList[11][2] / getMacros(foodList[11])[4]])
+    
+    with tab5:
+        st.write(foodList[12])
+        chart([getMacros(foodList[12])[0] / getMacros(foodList[12])[4], 
+               foodList[12][1] / getMacros(foodList[12])[4], 
+               foodList[12][2] / getMacros(foodList[12])[4]])
+    
+        st.write(foodList[13])
+        chart([getMacros(foodList[13])[0] / getMacros(foodList[13])[4], 
+               foodList[13][1] / getMacros(foodList[13])[4], 
+               foodList[13][2] / getMacros(foodList[13])[4]])
+    
+        st.write(foodList[14])
+        chart([getMacros(foodList[14])[0] / getMacros(foodList[14])[4], 
+               foodList[14][1] / getMacros(foodList[14])[4], 
+               foodList[14][2] / getMacros(foodList[14])[4]])
+    
+    with tab6:
+        st.write(foodList[15])
+        chart([getMacros(foodList[15])[0] / getMacros(foodList[15])[4], 
+               foodList[15][1] / getMacros(foodList[15])[4], 
+               foodList[15][2] / getMacros(foodList[15])[4]])
+    
+        st.write(foodList[16])
+        chart([getMacros(foodList[16])[0] / getMacros(foodList[16])[4], 
+               foodList[16][1] / getMacros(foodList[16])[4], 
+               foodList[16][2] / getMacros(foodList[16])[4]])
+    
+        st.write(foodList[17])
+        chart([getMacros(foodList[17])[0] / getMacros(foodList[17])[4], 
+               foodList[17][1] / getMacros(foodList[17])[4], 
+               foodList[17][2] / getMacros(foodList[17])[4]])
+    
+    with tab7:
+        st.write(foodList[18])
+        chart([getMacros(foodList[18])[0] / getMacros(foodList[18])[4], foodList[18][1] / getMacros(foodList[18])[4], foodList[18][2] / getMacros(foodList[18])[4]])
+    
+        st.write(foodList[19])
+        chart([getMacros(foodList[19])[0] / getMacros(foodList[19])[4], foodList[19][1] / getMacros(foodList[19])[4], foodList[19][2] / getMacros(foodList[19])[4]])
+    
+        st.write(foodList[20])
+        chart([getMacros(foodList[20])[0] / getMacros(foodList[20])[4], foodList[20][1] / getMacros(foodList[20])[4], foodList[20][2] / getMacros(foodList[20])[4]])
+
+def chart(sizes):
+    fig, ax = plt.subplots()  # Define fig and ax here
+    labels = 'Fat', 'Protein', 'Carbs'
     ax.pie(sizes, labels=labels, autopct='%1.1f%%', shadow=True, startangle=90)
     ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-    
     st.pyplot(fig)
 
-    
+
+
 if __name__ == "__main__":
     main()
