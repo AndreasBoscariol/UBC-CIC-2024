@@ -24,7 +24,7 @@ def main():
         # User inputs
         gender = st.radio('Gender', ['Male', 'Female']) # Gender selection
         age = st.number_input('Age', min_value=1, max_value=100, value=25) # Age input
-        weight = st.number_input('Weight (lbs)', min_value=50.0, max_value=400.0, value=150.0) # Weight input
+        weight = st.number_input('Weight (lbs)', min_value=50.0, max_value=300.0, value=150.0) # Weight input
         height = st.number_input('Height (cm)', min_value=100.0, max_value=250.0, value=170.0) # Height input
         activity_levels = {'Extremely Inactive': 1.2, 'Sedentary': 1.3, 'Moderately Active': 1.55, 'Vigorously Active': 1.725, 'Extremely Active': 1.9}
         activity_level = st.selectbox('Activity Level', options=list(activity_levels.keys())) # Activity level selection
@@ -65,100 +65,101 @@ def generateMealPlan(gender, age, weight, height, PAL, goal, diet):
     
     
 def dailyCharts(foodList):
-    tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs(["Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday","Sunday"])
+    tab1, tab2, tab3, tab3, tab5, tab6, tab7 = st.tabs(["Monday", "Tuesday", "Wednesday","Thursday","Friday","Saturday","Sunday"])
    
     with tab1:
         st.write(foodList[0])
-        chart([getMacros(foodList[0])[0] / getMacros(foodList[0])[4], foodList[0][1] / getMacros(foodList[0])[4], foodList[0][2] / getMacros(foodList[0])[4]])
+        chart([getMacros(foodList[0])[0] / getMacros(foodList[0])[3], foodList[0][1] / getMacros(foodList[0])[3], foodList[0][2] / getMacros(foodList[0])[3]])
         
         st.write(foodList[1])
-        chart([getMacros(foodList[1])[0] / getMacros(foodList[1])[4], foodList[1][1] / getMacros(foodList[1])[4], foodList[1][2] / getMacros(foodList[1])[4]])
+        chart([getMacros(foodList[1])[0] / getMacros(foodList[1])[3], foodList[1][1] / getMacros(foodList[1])[3], foodList[1][2] / getMacros(foodList[1])[3]])
 
         st.write(foodList[2])
-        chart([getMacros(foodList[2])[0] / getMacros(foodList[2])[4], foodList[2][1] / getMacros(foodList[2])[4], foodList[2][2] / getMacros(foodList[2])[4]])
+        chart([getMacros(foodList[2])[0] / getMacros(foodList[2])[3], foodList[2][1] / getMacros(foodList[2])[3], foodList[2][2] / getMacros(foodList[2])[3]])
 
     with tab2:
         st.write(foodList[3])
-        chart([getMacros(foodList[3])[0] / getMacros(foodList[3])[4], foodList[3][1] / getMacros(foodList[3])[4], foodList[3][2] / getMacros(foodList[3])[4]])
+        chart([getMacros(foodList[3])[0] / getMacros(foodList[3])[33], foodList[3][1] / getMacros(foodList[3])[3], foodList[3][2] / getMacros(foodList[3])[3]])
 
         st.write(foodList[4])
-        chart([getMacros(foodList[4])[0] / getMacros(foodList[4])[4], foodList[4][1] / getMacros(foodList[4])[4], foodList[4][2] / getMacros(foodList[4])[4]])
+        chart([getMacros(foodList[4])[0] / getMacros(foodList[4])[3], foodList[4][1] / getMacros(foodList[4])[3], foodList[4][2] / getMacros(foodList[4])[3]])
 
         st.write(foodList[5])
-        chart([getMacros(foodList[5])[0] / getMacros(foodList[5])[4], foodList[5][1] / getMacros(foodList[5])[4], foodList[5][2] / getMacros(foodList[5])[4]])
+        chart([getMacros(foodList[5])[0] / getMacros(foodList[5])[3], foodList[5][1] / getMacros(foodList[5])[3], foodList[5][2] / getMacros(foodList[5])[3]])
 
     with tab3:
         st.write(foodList[6])
-        chart([getMacros(foodList[6])[0] / getMacros(foodList[6])[4], 
-               foodList[6][1] / getMacros(foodList[6])[4], 
-               foodList[6][2] / getMacros(foodList[6])[4]])
+        chart([getMacros(foodList[6])[0] / getMacros(foodList[6])[3], 
+               foodList[6][1] / getMacros(foodList[6])[3], 
+               foodList[6][2] / getMacros(foodList[6])[3]])
     
         st.write(foodList[7])
-        chart([getMacros(foodList[7])[0] / getMacros(foodList[7])[4], 
-               foodList[7][1] / getMacros(foodList[7])[4], 
-               foodList[7][2] / getMacros(foodList[7])[4]])
+        chart([getMacros(foodList[7])[0] / getMacros(foodList[7])[3], 
+               foodList[7][1] / getMacros(foodList[7])[3], 
+               foodList[7][2] / getMacros(foodList[7])[3]])
     
         st.write(foodList[8])
-        chart([getMacros(foodList[8])[0] / getMacros(foodList[8])[4], 
-               foodList[8][1] / getMacros(foodList[8])[4], 
-               foodList[8][2] / getMacros(foodList[8])[4]])
+        chart([getMacros(foodList[8])[0] / getMacros(foodList[8])[3], 
+               foodList[8][1] / getMacros(foodList[8])[3], 
+               foodList[8][2] / getMacros(foodList[8])[3]])
     
-    with tab4:
+    with tab3:
         st.write(foodList[9])
-        chart([getMacros(foodList[9])[0] / getMacros(foodList[9])[4], 
-               foodList[9][1] / getMacros(foodList[9])[4], 
-               foodList[9][2] / getMacros(foodList[9])[4]])
+        chart([getMacros(foodList[9])[0] / getMacros(foodList[9])[3], 
+               foodList[9][1] / getMacros(foodList[9])[3], 
+               foodList[9][2] / getMacros(foodList[9])[3]])
     
         st.write(foodList[10])
-        chart([getMacros(foodList[10])[0] / getMacros(foodList[10])[4], 
-               foodList[10][1] / getMacros(foodList[10])[4], 
-               foodList[10][2] / getMacros(foodList[10])[4]])
+        chart([getMacros(foodList[10])[0] / getMacros(foodList[10])[3], 
+               foodList[10][1] / getMacros(foodList[10])[3], 
+               foodList[10][2] / getMacros(foodList[10])[3]])
     
         st.write(foodList[11])
-        chart([getMacros(foodList[11])[0] / getMacros(foodList[11])[4], 
-               foodList[11][1] / getMacros(foodList[11])[4], 
-               foodList[11][2] / getMacros(foodList[11])[4]])
+        chart([getMacros(foodList[11])[0] / getMacros(foodList[11])[3], 
+               foodList[11][1] / getMacros(foodList[11])[3], 
+               foodList[11][2] / getMacros(foodList[11])[3]])
     
     with tab5:
         st.write(foodList[12])
-        chart([getMacros(foodList[12])[0] / getMacros(foodList[12])[4], 
-               foodList[12][1] / getMacros(foodList[12])[4], 
-               foodList[12][2] / getMacros(foodList[12])[4]])
+        chart([getMacros(foodList[12])[0] / getMacros(foodList[12])[3], 
+               foodList[12][1] / getMacros(foodList[12])[3], 
+               foodList[12][2] / getMacros(foodList[12])[3]])
     
         st.write(foodList[13])
-        chart([getMacros(foodList[13])[0] / getMacros(foodList[13])[4], 
-               foodList[13][1] / getMacros(foodList[13])[4], 
-               foodList[13][2] / getMacros(foodList[13])[4]])
+        chart([getMacros(foodList[13])[0] / getMacros(foodList[13])[3], 
+               foodList[13][1] / getMacros(foodList[13])[3], 
+               foodList[13][2] / getMacros(foodList[13])[3]])
     
         st.write(foodList[14])
-        chart([getMacros(foodList[14])[0] / getMacros(foodList[14])[4], 
-               foodList[14][1] / getMacros(foodList[14])[4], 
-               foodList[14][2] / getMacros(foodList[14])[4]])
+        chart([getMacros(foodList[14])[0] / getMacros(foodList[14])[3], 
+               foodList[14][1] / getMacros(foodList[14])[3], 
+               foodList[14][2] / getMacros(foodList[14])[3]])
     
     with tab6:
         st.write(foodList[15])
-        chart([getMacros(foodList[15])[0] / getMacros(foodList[15])[4], 
-               foodList[15][1] / getMacros(foodList[15])[4], 
-               foodList[15][2] / getMacros(foodList[15])[4]])
+        chart([getMacros(foodList[15])[0] / getMacros(foodList[15])[3], 
+               foodList[15][1] / getMacros(foodList[15])[3], 
+               foodList[15][2] / getMacros(foodList[15])[3]])
     
         st.write(foodList[16])
-        chart([getMacros(foodList[16])[0] / getMacros(foodList[16])[4], 
-               foodList[16][1] / getMacros(foodList[16])[4], 
-               foodList[16][2] / getMacros(foodList[16])[4]])
+        chart([getMacros(foodList[16])[0] / getMacros(foodList[16])[3], 
+               foodList[16][1] / getMacros(foodList[16])[3], 
+               foodList[16][2] / getMacros(foodList[16])[3]])
     
         st.write(foodList[17])
-        chart([getMacros(foodList[17])[0] / getMacros(foodList[17])[4], 
-               foodList[17][1] / getMacros(foodList[17])[4], 
-               foodList[17][2] / getMacros(foodList[17])[4]])
+        chart([getMacros(foodList[17])[0] / getMacros(foodList[17])[3], 
+               foodList[17][1] / getMacros(foodList[17])[3], 
+               foodList[17][2] / getMacros(foodList[17])[3]])
     
     with tab7:
         st.write(foodList[18])
-        chart([getMacros(foodList[18])[0] / getMacros(foodList[18])[4], foodList[18][1] / getMacros(foodList[18])[4], foodList[18][2] / getMacros(foodList[18])[4]])
+        chart([getMacros(foodList[18])[0] / getMacros(foodList[18])[3], foodList[18][1] / getMacros(foodList[18])[3], foodList[18][2] / getMacros(foodList[18])[3]])
     
         st.write(foodList[19])
-        chart([getMacros(foodList[19])[0] / getMacros(foodList[19])[4], foodList[19][1] / getMacros(foodList[19])[4], foodList[19][2] / getMacros(foodList[19])[4]])
+        chart([getMacros(foodList[19])[0] / getMacros(foodList[19])[3], foodList[19][1] / getMacros(foodList[19])[3], foodList[19][2] / getMacros(foodList[19])[3]])
     
-        
+        st.write(foodList[20])
+        chart([getMacros(foodList[20])[0] / getMacros(foodList[20])[3], foodList[20][1] / getMacros(foodList[20])[3], foodList[20][2] / getMacros(foodList[20])[3]])
 
 def chart(sizes):
     fig, ax = plt.subplots()  # Define fig and ax here
